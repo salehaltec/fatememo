@@ -1,0 +1,56 @@
+{
+  "_client-Bh-W1TDz.js": {
+    "file": "assets/client-Bh-W1TDz.js",
+    "name": "client"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-DMwFbYsI.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/app.jsx": {
+    "file": "assets/app-DKOUWi9P.js",
+    "name": "app",
+    "src": "resources/js/app.jsx",
+    "isEntry": true,
+    "imports": [
+      "_client-Bh-W1TDz.js"
+    ]
+  },
+  "resources/js/pages/business-check-entry.jsx": {
+    "file": "assets/business-check-entry-BuFSzscF.js",
+    "name": "business-check-entry",
+    "src": "resources/js/pages/business-check-entry.jsx",
+    "isEntry": true,
+    "imports": [
+      "_client-Bh-W1TDz.js"
+    ]
+  },
+  "resources/js/pages/business-consultant-entry.jsx": {
+    "file": "assets/business-consultant-entry-CfYAqLeC.js",
+    "name": "business-consultant-entry",
+    "src": "resources/js/pages/business-consultant-entry.jsx",
+    "isEntry": true,
+    "imports": [
+      "_client-Bh-W1TDz.js"
+    ]
+  },
+  "resources/js/pages/business-systemization-entry.jsx": {
+    "file": "assets/business-systemization-entry-CMVQbYbL.js",
+    "name": "business-systemization-entry",
+    "src": "resources/js/pages/business-systemization-entry.jsx",
+    "isEntry": true,
+    "imports": [
+      "_client-Bh-W1TDz.js"
+    ]
+  },
+  "resources/js/pages/home-entry.jsx": {
+    "file": "assets/home-entry-B1OH0-Pq.js",
+    "name": "home-entry",
+    "src": "resources/js/pages/home-entry.jsx",
+    "isEntry": true,
+    "imports": [
+      "_client-Bh-W1TDz.js"
+    ]
+  }
+}
