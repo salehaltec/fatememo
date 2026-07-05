@@ -16,6 +16,9 @@ const C = {
   violetDeep: "#6366f1",
   violetLight: "#a78bfa",
   red: "#f87171",
+  teal: "#2dd4bf",
+  tealDeep: "#0d9488",
+  tealLight: "#5eead4",
 };
 
 const FONT = "'Vazirmatn','Segoe UI',Tahoma,sans-serif";
@@ -25,7 +28,7 @@ const FONT = "'Vazirmatn','Segoe UI',Tahoma,sans-serif";
 const TOOLS = [
   {
     title: "Business Check",
-    desc: "وضعیت واقعی کسب‌وکارتان را در چند دقیقه ارزیابی کنید و نقاط ضعف و قوت را بشناسید.",
+    desc: "کسب و کارتان واقعا کجا ایستاده؟",
     href: "/business-check",
     accent: C.violet,
     accentDeep: C.violetDeep,
@@ -33,15 +36,15 @@ const TOOLS = [
   },
   {
     title: "Business Systemization",
-    desc: "فرآیندهای سازمان را مستند، خودکار و قابل تکرار کنید تا کسب‌وکار بدون شما هم بچرخد.",
+    desc: "کسب و کاری که بدون شما کار کند",
     href: "/business-systemization",
-    accent: C.goldLight,
-    accentDeep: C.red,
-    accentLight: C.gold,
+    accent: C.teal,
+    accentDeep: C.tealDeep,
+    accentLight: C.tealLight,
   },
   {
     title: "Business Consulting, Coaching & Mentoring",
-    desc: "بر اساس نتایج ارزیابی، مسیر رشد و اصلاح ساختار کسب‌وکارتان را با یک مشاور طراحی کنید.",
+    desc: "مشاور اشتباه، گران‌تر از نداشتن مشاور",
     href: "/business-consultant",
     accent: C.gold,
     accentDeep: C.goldDeep,
@@ -126,11 +129,20 @@ export default function App() {
               }}
             >
               <div className="row-content" style={styles.rowContent}>
-                <div style={styles.topLine}>
-                  <span style={{ ...styles.number, color: tool.accent }}>{tool.n}</span>
-                  <span style={{ ...styles.sub, color: tool.accent }}>{tool.sub}</span>
+                <div className="row-title-glass" style={styles.titleGlass}>
+                  <h2
+                    className="row-title"
+                    style={{
+                      ...styles.title,
+                      background: `linear-gradient(90deg, ${tool.accentLight}, ${tool.accent} 55%, ${tool.accentDeep})`,
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    {tool.title}
+                  </h2>
                 </div>
-                <h2 className="row-title" style={styles.title}>{tool.title}</h2>
                 <p className="row-desc" style={styles.desc}>{tool.desc}</p>
                 <div
                   className="cta-pill"
@@ -228,27 +240,21 @@ const styles = {
     maxWidth: 560,
     zIndex: 2,
   },
-  topLine: {
-    display: "flex",
-    alignItems: "center",
-    gap: 10,
-    marginBottom: 10,
-  },
-  number: {
-    fontSize: 18,
-    fontWeight: 800,
-    opacity: 0.7,
-  },
-  sub: {
-    fontSize: 13,
-    fontWeight: 700,
+  titleGlass: {
+    display: "inline-block",
+    padding: "10px 20px",
+    borderRadius: 16,
+    background: "rgba(255,255,255,0.06)",
+    border: "1px solid rgba(255,255,255,0.14)",
+    backdropFilter: "blur(14px)",
+    WebkitBackdropFilter: "blur(14px)",
+    marginBottom: 14,
   },
   title: {
     fontFamily: "'Vazirmatn', sans-serif",
-    fontSize: 24,
-    fontWeight: 800,
-    margin: "0 0 12px",
-    color: C.text,
+    fontSize: 25,
+    fontWeight: 900,
+    margin: 0,
     textAlign: "right",
   },
   desc: {
