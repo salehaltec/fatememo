@@ -33,7 +33,7 @@ const QUESTIONS = {
       options: [
         { text: "یک یا دو تامین‌کننده، کاملاً وابسته به آن‌ها هستیم", score: 1 },
         { text: "چند تامین‌کننده داریم اما شرایط مشخصی نداریم", score: 2 },
-        { text: "چندین تامین‌کننده با قرارداد یا توافق‌نامه مکتوب(نمایندگی رسمی هستیم)", score: 3 },
+        { text: "چندین تامین‌کننده با قرارداد یا توافق‌نامه مکتوب", score: 3 },
         { text: "زنجیره تامین متنوع با ارزیابی دوره‌ای و پشتیبان‌گیری", score: 4 },
       ],
     },
@@ -647,81 +647,253 @@ const styles = {
 
 // ─── SCREENS ─────────────────────────────────────────────────────────────────
 
+// mirror statements — the "I know you" moment
+const MIRROR_STATS = [
+  { num: "۷۰٪", text: "مدیرانی که فکر می‌کنند مشکل اصلی‌شان را می‌شناسند — اشتباه می‌کنند" },
+  { num: "۳×",  text: "هزینه‌ای که یک گلوگاه پنهان می‌تواند روی رشد شما داشته باشد" },
+  { num: "۵۰٪", text: "از وقت مدیران صرف کارهایی می‌شود که باید سیستم انجام دهد" },
+];
+
+// what this tool actually is
+const WHAT_IT_IS = [
+  { icon: "🔍", title: "نه آزمون شخصیت", desc: "این ابزار کسب‌وکار شما را می‌سنجد، نه شخصیت شما را" },
+  { icon: "📊", title: "نه گزارش کلی", desc: "نتیجه به حوزه کسب‌وکار شما اختصاصی است — بازرگانی، تولیدی یا خدماتی" },
+  { icon: "🎯", title: "همان سوالاتی که مشاور می‌پرسد", desc: "اولین جلسه مشاوره معمولاً با همین سوالات شروع می‌شود — شما آن را رایگان دریافت می‌کنید" },
+];
+
 function Intro({ onStart }) {
+  const [step, setStep] = useState("land"); // land | select
   const [selectedType, setSelectedType] = useState(null);
   const [name, setName] = useState("");
 
-  return (
-    <div style={styles.container}>
-      {/* Badge */}
-      <div style={styles.badge}>Business Check — آنالیز رایگان</div>
+  // ── LANDING STEP ──────────────────────────────────────────────────────────
+  if (step === "land") {
+    return (
+      <div style={styles.container}>
+        {/* Eyebrow */}
+        <div style={styles.badge}>Business Check · آنالیز رایگان</div>
 
-      {/* Hero */}
-      <h1 style={styles.heroTitle}>
-        کسب‌وکارتان واقعاً<br />کجا ایستاده؟
-      </h1>
-      <p style={styles.heroSub}>
-        در ۵ دقیقه، یک تصویر دقیق از وضعیت فعلی کسب‌وکارتان دریافت کنید.
-        بدون کلیشه، بدون توصیه‌های عمومی — فقط آنچه به طور مستقیم به <strong style={{ color: "#c4b5fd" }}>شما</strong> مربوط می‌شود.
-      </p>
+        {/* Hero — the provocative opener */}
+        <h1 style={{ ...styles.heroTitle, fontSize: "clamp(1.7rem,5.5vw,2.8rem)" }}>
+          کسب‌وکار شما<br />
+          <span style={{ color: "#a78bfa" }}>یک چیز پنهان دارد</span><br />
+          <span style={{ fontSize: "55%", color: "#64748b", fontWeight: 600 }}>
+            که بیشترین انرژی‌تان را می‌خورد.
+          </span>
+        </h1>
 
-      {/* Name */}
-      <div style={{ ...styles.card, marginBottom: "1.5rem" }}>
-        <p style={{ fontSize: "0.85rem", color: "#64748b", marginBottom: "0.5rem" }}>
-          اسم یا اسم کسب‌وکارتان را بنویسید
+        <p style={{ ...styles.heroSub, fontSize: "0.97rem" }}>
+          هر کسب‌وکاری — بدون استثنا — یک یا دو گلوگاه اصلی دارد که بقیه مشکلات از آن‌ها سرچشمه می‌گیرد.
+          مدیران باتجربه می‌دانند چه می‌فروشند. کمتر کسی می‌داند{" "}
+          <strong style={{ color: "#c4b5fd" }}>کجا دقیقاً پول و انرژی‌شان هدر می‌رود.</strong>
         </p>
-        <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="مثلاً: شرکت آراد، یا علی محمدی"
-          style={{
-            width: "100%",
-            background: "rgba(255,255,255,0.06)",
-            border: "1.5px solid rgba(255,255,255,0.12)",
-            borderRadius: 10,
-            padding: "0.75rem 1rem",
-            color: "#e2e8f0",
-            fontSize: "0.95rem",
-            outline: "none",
-            boxSizing: "border-box",
-          }}
-        />
-      </div>
 
-      {/* Type selection */}
-      <div style={{ marginBottom: "0.5rem" }}>
-        <p style={{ fontSize: "0.85rem", color: "#64748b", marginBottom: "1rem" }}>
-          نوع کسب‌وکارتان را انتخاب کنید:
-        </p>
-        <div style={styles.typeGrid}>
-          {TYPES.map((t) => (
-            <button
-              key={t.id}
-              onClick={() => setSelectedType(t.id)}
-              style={styles.typeBtn(selectedType === t.id)}
-            >
-              <span style={styles.typeIcon}>{t.icon}</span>
-              <span style={styles.typeLabel}>{t.label}</span>
-              <span style={styles.typeDesc}>{t.desc}</span>
-            </button>
+        {/* Mirror stats */}
+        <div style={{
+          display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "0.75rem", marginBottom: "2rem",
+        }}>
+          {MIRROR_STATS.map((s, i) => (
+            <div key={i} style={{
+              background: "rgba(139,92,246,0.07)",
+              border: "1px solid rgba(139,92,246,0.15)",
+              borderRadius: 12, padding: "1rem 0.75rem", textAlign: "center",
+            }}>
+              <div style={{ fontSize: "1.5rem", fontWeight: 900, color: "#a78bfa", lineHeight: 1, marginBottom: "0.4rem" }}>
+                {s.num}
+              </div>
+              <div style={{ fontSize: "0.7rem", color: "#64748b", lineHeight: 1.5 }}>{s.text}</div>
+            </div>
           ))}
         </div>
+
+        {/* The mirror moment — "I see you" */}
+        <div style={{
+          background: "rgba(255,255,255,0.03)",
+          border: "1px solid rgba(255,255,255,0.08)",
+          borderRadius: 16, padding: "1.5rem", marginBottom: "1.5rem",
+        }}>
+          <p style={{ fontSize: "0.78rem", color: "#475569", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: "0.85rem" }}>
+            آیا این جملات آشناست؟
+          </p>
+          {[
+            "«کار می‌کنیم اما نمی‌دانم چرا سود کافی نیست»",
+            "«تیم دارم اما همه چیز به خودم ختم می‌شود»",
+            "«می‌فروشیم ولی رشد نمی‌کنیم»",
+            "«مشکل را می‌دانم اما نمی‌دانم از کجا شروع کنم»",
+          ].map((q, i) => (
+            <div key={i} style={{
+              fontSize: "0.88rem", color: "#94a3b8", padding: "0.5rem 0",
+              borderBottom: i < 3 ? "1px solid rgba(255,255,255,0.05)" : "none",
+              lineHeight: 1.5, display: "flex", gap: "0.6rem", alignItems: "flex-start",
+            }}>
+              <span style={{ color: "#7c3aed", flexShrink: 0, marginTop: "0.1rem" }}>›</span>
+              <span style={{ fontStyle: "italic" }}>{q}</span>
+            </div>
+          ))}
+          <p style={{ fontSize: "0.8rem", color: "#6366f1", marginTop: "1rem", marginBottom: 0, lineHeight: 1.65 }}>
+            اگر حتی یکی از این‌ها آشناست، این ابزار چیزی به شما نشان می‌دهد که احتمالاً هنوز ندیده‌اید.
+          </p>
+        </div>
+
+        {/* What it actually is */}
+        <div style={{ marginBottom: "2rem" }}>
+          <p style={{ fontSize: "0.78rem", color: "#475569", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: "1rem" }}>
+            این ابزار چیست؟
+          </p>
+          {WHAT_IT_IS.map((item, i) => (
+            <div key={i} style={{
+              display: "flex", gap: "0.9rem", alignItems: "flex-start",
+              padding: "0.75rem 0",
+              borderBottom: i < WHAT_IT_IS.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
+            }}>
+              <span style={{
+                fontSize: "1.2rem",
+                background: "rgba(139,92,246,0.12)",
+                border: "1px solid rgba(139,92,246,0.2)",
+                borderRadius: 8, padding: "0.35rem 0.5rem", flexShrink: 0,
+              }}>{item.icon}</span>
+              <div>
+                <div style={{ fontWeight: 700, fontSize: "0.87rem", color: "#e2e8f0", marginBottom: "0.2rem" }}>{item.title}</div>
+                <div style={{ fontSize: "0.79rem", color: "#64748b", lineHeight: 1.6 }}>{item.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <button
+          style={{ ...styles.btnPrimary, width: "100%" }}
+          onClick={() => setStep("select")}
+        >
+          می‌خواهم بدانم کجا هستم ←
+        </button>
+        <p style={{ textAlign: "center", fontSize: "0.72rem", color: "#334155", marginTop: "0.75rem" }}>
+          ۵ دقیقه · رایگان · بدون ثبت‌نام · نتیجه فوری
+        </p>
       </div>
+    );
+  }
+
+  // ── SELECT STEP ───────────────────────────────────────────────────────────
+  return (
+    <div style={styles.container}>
+      {/* Back */}
+      <button
+        style={{
+          background: "rgba(255,255,255,0.04)", border: "1.5px solid rgba(255,255,255,0.08)",
+          borderRadius: 10, padding: "0.5rem 1rem", color: "#64748b", cursor: "pointer",
+          fontSize: "0.82rem", marginBottom: "1.5rem",
+          fontFamily: "'Vazirmatn','Segoe UI',Tahoma,sans-serif",
+        }}
+        onClick={() => setStep("land")}
+      >← بازگشت</button>
+
+      <div style={styles.badge}>گام اول</div>
+      <h2 style={{ ...styles.heroTitle, fontSize: "clamp(1.4rem,4vw,2rem)" }}>
+        کسب‌وکار شما<br />در کدام دسته است؟
+      </h2>
+      <p style={{ ...styles.heroSub, fontSize: "0.88rem" }}>
+        سوالات و معیارهای ارزیابی برای هر نوع کسب‌وکار متفاوت است.
+        دسته‌بندی درست، نتیجه دقیق‌تری به شما می‌دهد.
+      </p>
+
+      {/* Type cards — richer than before */}
+      <div style={{ marginBottom: "1.5rem" }}>
+        {TYPES.map((t) => (
+          <button
+            key={t.id}
+            onClick={() => setSelectedType(t.id)}
+            style={{
+              width: "100%", textAlign: "right", display: "block",
+              background: selectedType === t.id
+                ? "linear-gradient(135deg, rgba(139,92,246,0.18), rgba(99,102,241,0.12))"
+                : "rgba(255,255,255,0.03)",
+              border: `2px solid ${selectedType === t.id ? "#8b5cf6" : "rgba(255,255,255,0.08)"}`,
+              borderRadius: 14, padding: "1.1rem 1.25rem", cursor: "pointer",
+              marginBottom: "0.65rem", transition: "all 0.15s",
+              fontFamily: "'Vazirmatn','Segoe UI',Tahoma,sans-serif",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "0.9rem" }}>
+              <span style={{
+                fontSize: "1.6rem",
+                background: selectedType === t.id ? "rgba(139,92,246,0.2)" : "rgba(255,255,255,0.05)",
+                border: `1px solid ${selectedType === t.id ? "rgba(139,92,246,0.4)" : "rgba(255,255,255,0.08)"}`,
+                borderRadius: 10, padding: "0.4rem 0.55rem", flexShrink: 0,
+              }}>{t.icon}</span>
+              <div>
+                <div style={{ fontWeight: 800, fontSize: "0.97rem", color: selectedType === t.id ? "#e2e8f0" : "#94a3b8", marginBottom: "0.15rem" }}>
+                  {t.label}
+                </div>
+                <div style={{ fontSize: "0.75rem", color: "#475569", lineHeight: 1.4 }}>{t.desc}</div>
+              </div>
+              {selectedType === t.id && (
+                <span style={{ marginRight: "auto", color: "#8b5cf6", fontSize: "1.1rem" }}>✓</span>
+              )}
+            </div>
+            {/* Sections preview */}
+            <div style={{
+              marginTop: "0.65rem", paddingTop: "0.65rem",
+              borderTop: "1px solid rgba(255,255,255,0.06)",
+              display: "flex", flexWrap: "wrap", gap: "0.35rem",
+            }}>
+              {(t.id === "trade"
+                ? ["لجستیک تامین","قیمت‌گذاری","لجستیک فروش","بازاریابی","خدمات پس از فروش"]
+                : t.id === "production"
+                ? ["لجستیک تامین","فرآیند تولید","قیمت‌گذاری","بازاریابی","خدمات پس از فروش"]
+                : ["تولید خدمت","مدیریت دانش","بازاریابی","خدمات پس از فروش"]
+              ).map((sec, i) => (
+                <span key={i} style={{
+                  fontSize: "0.67rem", color: "#475569",
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(255,255,255,0.07)",
+                  borderRadius: 99, padding: "0.18rem 0.55rem",
+                }}>{sec}</span>
+              ))}
+            </div>
+          </button>
+        ))}
+      </div>
+
+      {/* Name field */}
+      {selectedType && (
+        <div style={{
+          background: "rgba(255,255,255,0.03)",
+          border: "1px solid rgba(255,255,255,0.08)",
+          borderRadius: 14, padding: "1.25rem", marginBottom: "1.25rem",
+        }}>
+          <p style={{ fontSize: "0.82rem", color: "#64748b", marginBottom: "0.5rem" }}>
+            اسم یا نام کسب‌وکارتان را بنویسید تا نتیجه شخصی‌سازی‌شده باشد:
+          </p>
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="مثلاً: شرکت آراد، یا علی محمدی"
+            style={{
+              width: "100%",
+              background: "rgba(255,255,255,0.06)",
+              border: "1.5px solid rgba(255,255,255,0.12)",
+              borderRadius: 10, padding: "0.75rem 1rem",
+              color: "#e2e8f0", fontSize: "0.95rem", outline: "none",
+              boxSizing: "border-box",
+              fontFamily: "'Vazirmatn','Segoe UI',Tahoma,sans-serif",
+            }}
+          />
+        </div>
+      )}
 
       <button
         style={{
-          ...styles.btnPrimary,
-          opacity: selectedType && name.trim() ? 1 : 0.4,
+          ...styles.btnPrimary, width: "100%",
+          opacity: selectedType && name.trim() ? 1 : 0.35,
           cursor: selectedType && name.trim() ? "pointer" : "not-allowed",
-          width: "100%",
         }}
         onClick={() => selectedType && name.trim() && onStart(selectedType, name.trim())}
       >
         شروع آنالیز ←
       </button>
-
-      <p style={{ textAlign: "center", fontSize: "0.75rem", color: "#475569", marginTop: "1rem" }}>
-        کاملاً رایگان · بدون نیاز به ثبت‌نام · نتیجه فوری
+      <p style={{ textAlign: "center", fontSize: "0.72rem", color: "#334155", marginTop: "0.75rem" }}>
+        حدود ۵ دقیقه · نتیجه فوری · بدون ثبت‌نام
       </p>
     </div>
   );

@@ -9,16 +9,9 @@ const C = {
   text: "#f8fafc",
   muted: "#94a3b8",
   soft: "#64748b",
-  gold: "#f59e0b",
-  goldLight: "#fbbf24",
-  goldDeep: "#d97706",
-  violet: "#8b5cf6",
-  violetDeep: "#6366f1",
-  violetLight: "#a78bfa",
   red: "#f87171",
-  teal: "#2dd4bf",
-  tealDeep: "#0d9488",
-  tealLight: "#5eead4",
+  redLight: "#fca5a5",
+  redDeep: "#dc2626",
 };
 
 const FONT = "'Vazirmatn','Segoe UI',Tahoma,sans-serif";
@@ -28,27 +21,24 @@ const FONT = "'Vazirmatn','Segoe UI',Tahoma,sans-serif";
 const TOOLS = [
   {
     title: "Business Check",
+    titleFa: "بررسی کسب‌وکار",
     desc: "کسب و کارتان واقعا کجا ایستاده؟",
     href: "/business-check",
-    accent: C.violet,
-    accentDeep: C.violetDeep,
-    accentLight: C.violetLight,
+    image: "/images/home1.PNG",
   },
   {
     title: "Business Systemization",
+    titleFa: "سیستم‌سازی کسب‌وکار",
     desc: "کسب و کاری که بدون شما کار کند",
     href: "/business-systemization",
-    accent: C.teal,
-    accentDeep: C.tealDeep,
-    accentLight: C.tealLight,
+    image: "/images/home2.PNG",
   },
   {
     title: "Business Consulting, Coaching & Mentoring",
+    titleFa: "مشاوره، کوچینگ و منتورینگ",
     desc: "مشاور اشتباه، گران‌تر از نداشتن مشاور",
     href: "/business-consultant",
-    accent: C.gold,
-    accentDeep: C.goldDeep,
-    accentLight: C.goldLight,
+    image: "/images/home3.PNG",
   },
 ];
 
@@ -61,115 +51,116 @@ export default function App() {
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;800;900&display=swap');
         * { box-sizing: border-box; }
         body { margin: 0; }
-        .tool-row { transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease; }
+        .tool-row { transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease; overflow: visible; }
         .tool-row:hover { transform: translateY(-4px); }
-        .tool-row:hover .advisor-img { transform: translateY(-6px) scale(1.02); }
+        .tool-row:hover .advisor-img { transform: translateY(calc(10% - 6px)) scale(1.02); }
         a.tool-link { text-decoration: none; display: block; }
 
-        .row-image { width: 180px; }
+        .row-image { width: auto; align-self: flex-start; margin-bottom: -50px; }
 
         .advisor-img {
-          height: 250px;
-          width: auto;
-          max-width: none;
+          width: 300px;
+          max-width:100%;
+          height:auto;
           object-fit: contain;
-          margin-top: -90px;
-          margin-bottom: -46px;
+          margin-top: -108px;
+          margin-bottom: 0;
+          transform: translateY(13%);
           filter: drop-shadow(0 14px 24px rgba(0,0,0,0.45));
           transition: transform .35s ease;
         }
 
         @media (max-width: 720px) {
-          .tool-row {
-            flex-direction: column;
-            padding-top: 130px;
-            padding-left: 24px;
-            padding-right: 24px;
+          .tool-row{
+            flex-direction:column-reverse !important;
+            justify-content:flex-start !important;
+            align-items:center !important;
+            height:auto;
+            aspect-ratio:auto;
+            max-width:380px;
+            margin:0 auto 32px !important;
+            padding:0 24px 28px !important;
+            overflow:hidden;
           }
-          .row-content { align-items: center !important; max-width: 100% !important; text-align: center; }
-          .row-title, .row-desc { text-align: center !important; direction: rtl !important; }
-          .row-image {
-            position: absolute !important;
-            top: -55px !important;
-            left: 50% !important;
-            right: auto !important;
-            transform: translateX(-50%) !important;
-            width: auto !important;
+          .row-content{align-items:center !important;max-width:100% !important;text-align:center;}
+          .row-title-group{align-items:center !important;width:100%;}
+          .row-title-en,.row-title-fa{text-align:center !important;}
+          .row-desc{text-align:center !important;direction:rtl !important;}
+          .row-image{
+            position:relative !important;
+            left:auto !important;right:auto !important;top:auto !important;bottom:auto !important;
+            display:flex !important;justify-content:center !important;align-items:flex-end !important;
+            width:100% !important;
+            height:100% !important;
+            margin:0 0 4px !important;
+            align-self:center !important;
           }
-          .advisor-img {
-            height: 150px !important;
-            width: auto !important;
-            max-width: none !important;
-            margin-top: 0 !important;
-            margin-bottom: 0 !important;
+          .advisor-img{
+            height:210px !important;
+            width:auto !important;
+            max-width:82% !important;
+            margin:0 !important;
+            margin-top:0 !important;
+            transform:none !important;
           }
-          .cta-pill { margin: 6px auto 0 !important; }
+          .tool-row:hover .advisor-img{transform:none !important;}
+          .cta-pill{margin:8px auto 0 !important;}
         }
       `}</style>
 
-      <div style={styles.glowViolet} />
-      <div style={styles.glowGold} />
+      <div style={styles.glowRed1} />
+      <div style={styles.glowRed2} />
 
       <div style={styles.container}>
         {TOOLS.map((tool) => (
           <a key={tool.href} href={tool.href} className="tool-link">
             <div
               className="tool-row"
-              style={{
-                ...styles.row,
-                borderColor: C.border,
-              }}
+              style={styles.row}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = tool.accent + "66";
-                e.currentTarget.style.boxShadow = `0 12px 36px ${tool.accent}2e`;
+                e.currentTarget.style.borderColor = "rgba(248,113,113,0.5)";
+                e.currentTarget.style.boxShadow =
+                  "0 16px 48px rgba(248,113,113,0.22), 0 0 44px rgba(248,113,113,0.22)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = C.border;
-                e.currentTarget.style.boxShadow = "0 4px 20px rgba(0,0,0,0.2)";
+                e.currentTarget.style.borderColor = "rgba(248,113,113,0.16)";
+                e.currentTarget.style.boxShadow =
+                  "0 4px 20px rgba(0,0,0,0.25), 0 0 20px rgba(248,113,113,0.08)";
               }}
             >
               <div className="row-content" style={styles.rowContent}>
-                <div className="row-title-glass" style={styles.titleGlass}>
+                <div className="row-title-group" style={styles.titleGroup}>
                   <h2
-                    className="row-title"
-                    style={{
-                      ...styles.title,
-                      background: `linear-gradient(90deg, ${tool.accentLight}, ${tool.accent} 55%, ${tool.accentDeep})`,
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                    }}
+                    className="row-title-en"
+                    dir="ltr"
+                    style={styles.titleEn}
                   >
                     {tool.title}
                   </h2>
+                  <span className="title-divider" style={styles.titleDivider} />
+                  <h2
+                    className="row-title-fa"
+                    dir="rtl"
+                    style={styles.titleFa}
+                  >
+                    {tool.titleFa}
+                  </h2>
                 </div>
                 <p className="row-desc" style={styles.desc}>{tool.desc}</p>
-                <div
-                  className="cta-pill"
-                  style={{
-                    ...styles.cta,
-                    color: tool.accent,
-                    borderColor: tool.accent + "40",
-                  }}
-                >
+                <div className="cta-pill" style={styles.cta}>
                   بیشتر بخوانید
-                  <span style={{ fontSize: 16 }}>‹</span>
+                  <span style={{ fontSize: 16 }}>›</span>
                 </div>
               </div>
 
               <div className="row-image" style={styles.rowImage}>
                 <img
-                  src="/images/advisor.png"
-                  alt=""
+                  src={tool.image}
+                  alt={tool.title}
                   className="advisor-img"
                   style={styles.advisorImg}
                 />
-                <div
-                  style={{
-                    ...styles.imageGlow,
-                    background: `radial-gradient(circle, ${tool.accent}33, transparent 70%)`,
-                  }}
-                />
+                <div style={styles.imageGlow} />
               </div>
             </div>
           </a>
@@ -193,25 +184,25 @@ const styles = {
     overflow: "hidden",
     padding: "80px 0 100px",
   },
-  glowViolet: {
+  glowRed1: {
     position: "absolute",
     top: -120,
     right: -100,
     width: 420,
     height: 420,
     borderRadius: "50%",
-    background: "rgba(139,92,246,0.20)",
+    background: "rgba(248,113,113,0.16)",
     filter: "blur(90px)",
     pointerEvents: "none",
   },
-  glowGold: {
+  glowRed2: {
     position: "absolute",
     bottom: -140,
     left: -120,
     width: 460,
     height: 460,
     borderRadius: "50%",
-    background: "rgba(245,158,11,0.14)",
+    background: "rgba(220,38,38,0.14)",
     filter: "blur(100px)",
     pointerEvents: "none",
   },
@@ -225,13 +216,17 @@ const styles = {
     position: "relative",
     display: "flex",
     alignItems: "center",
+    flexDirection: "row",
     justifyContent: "space-between",
     background: C.surface,
-    border: `1px solid ${C.border}`,
+    backdropFilter: "blur(18px)",
+    WebkitBackdropFilter: "blur(18px)",
+    border: "1px solid rgba(248,113,113,0.16)",
     borderRadius: 24,
     padding: "36px 48px",
     marginBottom: 64,
     cursor: "pointer",
+    boxShadow: "0 4px 20px rgba(0,0,0,0.25), 0 0 20px rgba(248,113,113,0.08)",
   },
   rowContent: {
     display: "flex",
@@ -240,27 +235,43 @@ const styles = {
     maxWidth: 560,
     zIndex: 2,
   },
-  titleGlass: {
-    display: "inline-block",
-    padding: "10px 20px",
-    borderRadius: 16,
-    background: "rgba(255,255,255,0.06)",
-    border: "1px solid rgba(255,255,255,0.14)",
-    backdropFilter: "blur(14px)",
-    WebkitBackdropFilter: "blur(14px)",
-    marginBottom: 14,
+  titleGroup: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-end",
+    width: "100%",
+    marginBottom: 16,
   },
-  title: {
+  titleEn: {
+    fontFamily: "'Roboto', sans-serif",
+    fontSize: 18,
+    fontWeight: 800,
+    letterSpacing: 0.4,
+    margin: 0,
+    textAlign: "right",
+    width: "100%",
+    color: C.text,
+  },
+  titleDivider: {
+    display: "block",
+    width: "100%",
+    height: 1,
+    margin: "8px 0",
+    background: "linear-gradient(90deg, transparent, rgba(248,113,113,0.35), transparent)",
+  },
+  titleFa: {
     fontFamily: "'Vazirmatn', sans-serif",
     fontSize: 25,
     fontWeight: 900,
     margin: 0,
     textAlign: "right",
+    width: "100%",
+    color: C.text,
   },
   desc: {
-    fontSize: 14.5,
+    fontSize: 16,
     lineHeight: 1.9,
-    color: C.muted,
+    color: "#e2e8f0",
     margin: "0 0 22px",
   },
   cta: {
@@ -271,7 +282,8 @@ const styles = {
     fontWeight: 700,
     padding: "11px 20px",
     borderRadius: 999,
-    border: `1px solid ${C.border}`,
+    color: C.red,
+    border: "1px solid rgba(248,113,113,0.4)",
   },
   rowImage: {
     position: "relative",
@@ -289,6 +301,7 @@ const styles = {
     width: 160,
     height: 60,
     borderRadius: "50%",
+    background: "radial-gradient(circle, rgba(248,113,113,0.28), transparent 70%)",
     filter: "blur(20px)",
     zIndex: -1,
   },

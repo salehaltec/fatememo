@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
+    <meta name="theme-color" content="#1E40AF">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مجموعه ابزارهای رشد کسب‌وکار</title>

@@ -4,7 +4,7 @@
     "name": "client"
   },
   "resources/css/app.css": {
-    "file": "assets/app-DMwFbYsI.css",
+    "file": "assets/app-rx8Bkgn7.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -18,7 +18,7 @@
     ]
   },
   "resources/js/pages/business-check-entry.jsx": {
-    "file": "assets/business-check-entry-BuFSzscF.js",
+    "file": "assets/business-check-entry-BFed86qv.js",
     "name": "business-check-entry",
     "src": "resources/js/pages/business-check-entry.jsx",
     "isEntry": true,
@@ -45,7 +45,7 @@
     ]
   },
   "resources/js/pages/home-entry.jsx": {
-    "file": "assets/home-entry-B1OH0-Pq.js",
+    "file": "assets/home-entry-Vb6BocNb.js",
     "name": "home-entry",
     "src": "resources/js/pages/home-entry.jsx",
     "isEntry": true,
