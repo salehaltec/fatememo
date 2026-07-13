@@ -788,7 +788,7 @@ function Intro({ onStart }) {
           fontFamily: "'Vazirmatn','Segoe UI',Tahoma,sans-serif",
         }}
         onClick={() => setStep("land")}
-      >← بازگشت</button>
+      >بازگشت →</button>
 
       <div style={styles.badge}>گام اول</div>
       <h2 style={{ ...styles.heroTitle, fontSize: "clamp(1.4rem,4vw,2rem)" }}>
@@ -972,13 +972,13 @@ function Quiz({ type, name, onFinish }) {
       {/* Nav */}
       <div style={styles.navRow}>
         {current > 0 ? (
-          <button style={styles.btnSecondary} onClick={handleBack}>← قبلی</button>
+          <button style={styles.btnSecondary} onClick={handleBack}>قبلی →</button>
         ) : <div />}
         <button
           style={{ ...styles.btnPrimary, opacity: selected !== null ? 1 : 0.4 }}
           onClick={handleNext}
         >
-          {current + 1 < qs.length ? "بعدی →" : "مشاهده نتیجه →"}
+          {current + 1 < qs.length ? "بعدی ←" : "مشاهده نتیجه ←"}
         </button>
       </div>
     </div>
@@ -1132,7 +1132,7 @@ export default function App() {
   return (
     <div style={styles.root}>
       <link
-        href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;800;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800;900&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet"
       />
       {screen === "intro" && (
