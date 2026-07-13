@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    'melipayamak' => [
+        'username' => env('MELIPAYAMAK_USERNAME'),
+        'password' => env('MELIPAYAMAK_PASSWORD'),
+        'body_id' => env('MELIPAYAMAK_BODY_ID'),
+    ],
+
+    'admin' => ['phone' => env('ADMIN_PHONE')],
+
 ];

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import PhoneVerification from "../components/PhoneVerification";
+import SharedContactForm from "../components/SharedContactForm";
 
 // ─── DATA ───────────────────────────────────────────────────────────────────
 
@@ -1148,12 +1150,20 @@ export default function App() {
           name={bizName}
           onFinish={(answers) => {
             setFinalAnswers(answers);
-            setScreen("results");
+            setScreen("verify");
           }}
         />
       )}
+      {screen === "verify" && finalAnswers && (
+        <PhoneVerification
+          assessment={{tool:"business-check",business_name:bizName,business_type:bizType,answers:finalAnswers,result:analyze(bizType,finalAnswers)}}
+          onVerified={() => setScreen("results")}
+          accent="#2563eb"
+        />
+      )}
       {screen === "results" && (
-        <Results type={bizType} name={bizName} answers={finalAnswers} />
+        <><Results type={bizType} name={bizName} answers={finalAnswers} />
+        <div style={{maxWidth:720,margin:"0 auto",padding:"0 20px 60px"}}><SharedContactForm source="business-check" service="بیزینس چک" /></div></>
       )}
     </div>
   );
