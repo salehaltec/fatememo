@@ -7,7 +7,7 @@
     <meta name="description" content="کوچینگ حرفه‌ای کسب‌وکار توسط فاطمه محمدی">
     <meta name="keywords" content="کوچینگ, کسب و کار, رشد فروش, بیزنس کوچ">
     <meta name="author" content="Fatemeh Mohammadi">
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800;900&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Vazirmatn, sans-serif;

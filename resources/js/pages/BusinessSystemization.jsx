@@ -611,14 +611,14 @@ function DiagQuiz({ onFinish }) {
 
       <div style={{ display: "flex", justifyContent: "space-between", gap: "0.75rem" }}>
         {current > 0
-          ? <button style={S.btnGhost} onClick={() => { setCurrent(current - 1); setSel(answers[current - 1] !== null ? DIAG_QS[current - 1].options.findIndex(o => o.score === answers[current - 1]) : null); }}>← قبلی</button>
+          ? <button style={S.btnGhost} onClick={() => { setCurrent(current - 1); setSel(answers[current - 1] !== null ? DIAG_QS[current - 1].options.findIndex(o => o.score === answers[current - 1]) : null); }}>قبلی →</button>
           : <div />
         }
         <button
           style={{ ...S.btnPrimary, flex: 1, opacity: sel !== null ? 1 : 0.4 }}
           onClick={handleNext}
         >
-          {current + 1 < DIAG_QS.length ? "بعدی →" : "مشاهده نتیجه →"}
+          {current + 1 < DIAG_QS.length ? "بعدی ←" : "مشاهده نتیجه ←"}
         </button>
       </div>
     </div>
@@ -772,7 +772,7 @@ export default function App() {
 
   return (
     <div style={S.root}>
-      <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800;900&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
       <div style={S.wrap}>
 
@@ -853,7 +853,7 @@ export default function App() {
         {/* ── FORM ── */}
         {screen === "form" && (
           <>
-            <button style={{ ...S.btnGhost, marginBottom: "1.5rem" }} onClick={() => setScreen("home")}>← بازگشت</button>
+            <button style={{ ...S.btnGhost, marginBottom: "1.5rem" }} onClick={() => setScreen("home")}>بازگشت →</button>
             <SharedContactForm source="business-systemization" service="سیستم‌سازی کسب‌وکار" dark onSuccess={(f) => { setSubmittedName(f.name); setScreen("formDone"); }} />
           </>
         )}
@@ -864,7 +864,7 @@ export default function App() {
         {/* ── DIAGNOSTIC ── */}
         {screen === "diag" && (
           <>
-            <button style={{ ...S.btnGhost, marginBottom: "1.5rem" }} onClick={() => setScreen("home")}>← بازگشت</button>
+            <button style={{ ...S.btnGhost, marginBottom: "1.5rem" }} onClick={() => setScreen("home")}>بازگشت →</button>
             <div style={S.chip("#94a3b8")}>تشخیص نیاز — ۷ سوال</div>
             <h2 style={{ ...S.h1, fontSize: "1.6rem" }}>آیا مشکل شما «نبود سیستم» است؟</h2>
             <p style={{ ...S.lead, fontSize: "0.87rem" }}>
@@ -893,7 +893,7 @@ export default function App() {
         {/* ── FORM AFTER DIAG ── */}
         {screen === "formAfterDiag" && (
           <>
-            <button style={{ ...S.btnGhost, marginBottom: "1.5rem" }} onClick={() => setScreen("diagDone")}>← بازگشت به نتیجه</button>
+            <button style={{ ...S.btnGhost, marginBottom: "1.5rem" }} onClick={() => setScreen("diagDone")}>بازگشت به نتیجه →</button>
             <SharedContactForm source="business-systemization" service="سیستم‌سازی کسب‌وکار" dark onSuccess={(f) => { setSubmittedName(f.name); setScreen("formDoneAfterDiag"); }} />
           </>
         )}

@@ -259,7 +259,7 @@ function Diagnostic({ onResult }) {
       <div style={{display:"flex",gap:"0.75rem",justifyContent:"space-between"}}>
         {step>0
           ? <button style={{background:C.surfaceHi,color:C.soft,border:`1.5px solid ${C.border}`,borderRadius:10,padding:"0.65rem 1.1rem",fontSize:"0.83rem",cursor:"pointer",fontFamily:FONT}}
-              onClick={()=>{setStep(step-1);setSel(null);setAnswers(answers.slice(0,-1));}}>← قبلی</button>
+              onClick={()=>{setStep(step-1);setSel(null);setAnswers(answers.slice(0,-1));}}>قبلی →</button>
           : <div/>}
         <button
           style={{flex:1,background:"linear-gradient(135deg,#f59e0b,#d97706)",color:"#09080f",border:"none",borderRadius:12,padding:"0.9rem 2rem",fontSize:"0.95rem",fontWeight:800,cursor:"pointer",fontFamily:FONT,opacity:sel!==null?1:0.35}}
@@ -456,7 +456,7 @@ export default function App() {
 
   return (
     <div style={{fontFamily:FONT,direction:"rtl",background:C.bg,minHeight:"100vh",color:C.text,margin:0,padding:0}}>
-      <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800;900&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
       <div style={{maxWidth:740,margin:"0 auto",padding:"2.5rem 1.25rem 6rem"}}>
 
         {/* HERO */}
@@ -544,7 +544,7 @@ export default function App() {
           <>
             <div style={{display:"inline-block",background:"rgba(245,158,11,0.12)",border:"1px solid rgba(245,158,11,0.3)",color:C.gold,borderRadius:999,padding:"0.28rem 0.9rem",fontSize:"0.7rem",fontWeight:700,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:"1.1rem"}}>تشخیص نوع خدمت</div>
             <button style={{float:"left",background:C.surfaceHi,color:C.soft,border:`1.5px solid ${C.border}`,borderRadius:10,padding:"0.5rem 1rem",fontSize:"0.8rem",cursor:"pointer",fontFamily:FONT,marginBottom:"1rem"}}
-              onClick={()=>setScreen("home")}>← بازگشت</button>
+              onClick={()=>setScreen("home")}>بازگشت →</button>
             <div style={{clear:"both"}}/>
             <Diagnostic onResult={(res,totals)=>{setDiagResult(res);setDiagTotals(totals);setScreen("verify");}}/>
           </>
@@ -570,7 +570,7 @@ export default function App() {
           <>
             <div style={{display:"inline-block",background:"rgba(245,158,11,0.12)",border:"1px solid rgba(245,158,11,0.3)",color:C.gold,borderRadius:999,padding:"0.28rem 0.9rem",fontSize:"0.7rem",fontWeight:700,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:"1.1rem"}}>مقایسه خدمات</div>
             <button style={{float:"left",background:C.surfaceHi,color:C.soft,border:`1.5px solid ${C.border}`,borderRadius:10,padding:"0.5rem 1rem",fontSize:"0.8rem",cursor:"pointer",fontFamily:FONT,marginBottom:"1rem"}}
-              onClick={()=>setScreen("result")}>← بازگشت</button>
+              onClick={()=>setScreen("result")}>بازگشت →</button>
             <div style={{clear:"both"}}/>
             <AllServices highlight={diagResult} onSelect={(id)=>goToForm(id)}/>
           </>
@@ -604,7 +604,7 @@ export default function App() {
             <SharedContactForm source="business-consultant" service={selectedSvc ? SERVICES[selectedSvc]?.title : "مشاوره کسب‌وکار"} dark />
             <button style={{width:"100%",background:C.surfaceHi,color:C.soft,border:`1.5px solid ${C.border}`,borderRadius:10,padding:"0.7rem",fontSize:"0.83rem",cursor:"pointer",fontFamily:FONT,marginTop:"0.75rem"}}
               onClick={()=>setScreen(diagResult?"result":"home")}>
-              ← بازگشت
+              بازگشت →
             </button>
           </div>
         )}

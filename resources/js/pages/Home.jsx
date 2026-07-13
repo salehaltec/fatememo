@@ -48,7 +48,7 @@ export default function App() {
   return (
     <div style={styles.page}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800;900&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
         * { box-sizing: border-box; }
         body { margin: 0; }
         .tool-row { transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease; overflow: visible; }
@@ -149,7 +149,7 @@ export default function App() {
                 <p className="row-desc" style={styles.desc}>{tool.desc}</p>
                 <div className="cta-pill" style={styles.cta}>
                   بیشتر بخوانید
-                  <span style={{ fontSize: 16 }}>›</span>
+                  <span style={{ fontSize: 16 }}>‹</span>
                 </div>
               </div>
 
