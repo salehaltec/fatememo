@@ -6,3 +6,4 @@ deployment:
     - /bin/cp -R app bootstrap config database resources routes $APPPATH
     - /bin/cp artisan composer.json composer.lock package.json package-lock.json vite.config.js $APPPATH
     - /bin/cp -R public/* $PUBLICPATH
+    - /bin/rm -f /home/fatememo/bootstrap/cache/*.php
