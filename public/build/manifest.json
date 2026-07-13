@@ -1,6 +1,6 @@
 {
-  "_SharedContactForm-hU3HK_q4.js": {
-    "file": "assets/SharedContactForm-hU3HK_q4.js",
+  "_SharedContactForm-B8WNkV7i.js": {
+    "file": "assets/SharedContactForm-B8WNkV7i.js",
     "name": "SharedContactForm",
     "imports": [
       "_client-Bh-W1TDz.js"
@@ -25,33 +25,33 @@
     ]
   },
   "resources/js/pages/business-check-entry.jsx": {
-    "file": "assets/business-check-entry-DDLi6DWK.js",
+    "file": "assets/business-check-entry-7AV8wkYB.js",
     "name": "business-check-entry",
     "src": "resources/js/pages/business-check-entry.jsx",
     "isEntry": true,
     "imports": [
       "_client-Bh-W1TDz.js",
-      "_SharedContactForm-hU3HK_q4.js"
+      "_SharedContactForm-B8WNkV7i.js"
     ]
   },
   "resources/js/pages/business-consultant-entry.jsx": {
-    "file": "assets/business-consultant-entry-DDNRN5wH.js",
+    "file": "assets/business-consultant-entry-D4ZmHBVj.js",
     "name": "business-consultant-entry",
     "src": "resources/js/pages/business-consultant-entry.jsx",
     "isEntry": true,
     "imports": [
       "_client-Bh-W1TDz.js",
-      "_SharedContactForm-hU3HK_q4.js"
+      "_SharedContactForm-B8WNkV7i.js"
     ]
   },
   "resources/js/pages/business-systemization-entry.jsx": {
-    "file": "assets/business-systemization-entry-BKlCaSjw.js",
+    "file": "assets/business-systemization-entry-lt5FOV7W.js",
     "name": "business-systemization-entry",
     "src": "resources/js/pages/business-systemization-entry.jsx",
     "isEntry": true,
     "imports": [
       "_client-Bh-W1TDz.js",
-      "_SharedContactForm-hU3HK_q4.js"
+      "_SharedContactForm-B8WNkV7i.js"
     ]
   },
   "resources/js/pages/home-entry.jsx": {
