@@ -1,5 +1,8 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/fatememo/public_html/
-    - /bin/cp -R * $DEPLOYPATH
+    - export APPPATH=/home/fatememo/
+    - export PUBLICPATH=/home/fatememo/public_html/
+    - /bin/cp -R app bootstrap config database resources routes $APPPATH
+    - /bin/cp artisan composer.json composer.lock package.json package-lock.json vite.config.js $APPPATH
+    - /bin/cp -R public/* $PUBLICPATH
