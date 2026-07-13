@@ -18,7 +18,7 @@ export default function PhoneVerification({ assessment, onVerified, accent = '#2
     localStorage.setItem('verified_phone', phone); onVerified(phone);
   } catch(e){setError(e.message)} finally{setBusy(false)} };
 
-  return <div style={{position:'relative',maxWidth:540,margin:'38px auto',padding:'1px',borderRadius:24,background:`linear-gradient(135deg,${accent}aa,rgba(255,255,255,.18),${accent}35)`,boxShadow:`0 24px 80px ${accent}20,0 14px 44px rgba(0,0,0,.2)`,fontFamily:'Vazirmatn, sans-serif',overflow:'hidden'}}>
+  return <div style={{width:'100%',minHeight:'calc(100dvh - 5rem)',display:'grid',placeItems:'center',padding:'20px 0',boxSizing:'border-box'}}><div style={{position:'relative',width:'100%',maxWidth:540,margin:'0 auto',padding:'1px',borderRadius:24,background:`linear-gradient(135deg,${accent}aa,rgba(255,255,255,.18),${accent}35)`,boxShadow:`0 24px 80px ${accent}20,0 14px 44px rgba(0,0,0,.2)`,fontFamily:'Vazirmatn, sans-serif',overflow:'hidden'}}>
     <div style={{position:'absolute',width:210,height:210,borderRadius:'50%',background:accent,filter:'blur(90px)',opacity:.18,top:-110,right:-60,pointerEvents:'none'}} />
     <div style={{position:'relative',background:glass,backdropFilter:'blur(22px)',WebkitBackdropFilter:'blur(22px)',color:fg,borderRadius:23,padding:'clamp(22px,5vw,34px)',border:'1px solid rgba(255,255,255,.08)'}}>
     <div style={{width:56,height:56,display:'grid',placeItems:'center',fontSize:25,marginBottom:18,borderRadius:16,background:`linear-gradient(135deg,${accent}30,${accent}12)`,border:`1px solid ${accent}55`,boxShadow:`0 8px 26px ${accent}18`}}>✦</div>
@@ -32,5 +32,5 @@ export default function PhoneVerification({ assessment, onVerified, accent = '#2
     {sent && <button onClick={()=>{setSent(false);setCode('')}} style={{width:'100%',marginTop:10,padding:8,background:'transparent',border:0,color:muted,cursor:'pointer',fontFamily:'Vazirmatn, sans-serif'}}>اصلاح شماره / ارسال مجدد</button>}
     <div style={{display:'flex',justifyContent:'center',alignItems:'center',gap:7,color:muted,fontSize:11,marginTop:15}}><span>🔒</span> شماره شما محرمانه باقی می‌ماند</div>
     </div>
-  </div>;
+  </div></div>;
 }
