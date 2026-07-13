@@ -1,4 +1,6 @@
 import { useState, useRef } from "react";
+import PhoneVerification from "../components/PhoneVerification";
+import SharedContactForm from "../components/SharedContactForm";
 
 // ─── DESIGN TOKENS ────────────────────────────────────────────────────────────
 // Accent: warm gold #d97706/#f59e0b — distinct from teal (consulting v1)
@@ -544,8 +546,12 @@ export default function App() {
             <button style={{float:"left",background:C.surfaceHi,color:C.soft,border:`1.5px solid ${C.border}`,borderRadius:10,padding:"0.5rem 1rem",fontSize:"0.8rem",cursor:"pointer",fontFamily:FONT,marginBottom:"1rem"}}
               onClick={()=>setScreen("home")}>← بازگشت</button>
             <div style={{clear:"both"}}/>
-            <Diagnostic onResult={(res,totals)=>{setDiagResult(res);setDiagTotals(totals);setScreen("result");}}/>
+            <Diagnostic onResult={(res,totals)=>{setDiagResult(res);setDiagTotals(totals);setScreen("verify");}}/>
           </>
+        )}
+
+        {screen === "verify" && diagResult && (
+          <PhoneVerification dark accent="#f59e0b" assessment={{tool:"business-consultant",answers:diagTotals,result:{recommended:diagResult,totals:diagTotals}}} onVerified={()=>setScreen("result")} />
         )}
 
         {screen === "result" && diagResult && (
@@ -556,6 +562,7 @@ export default function App() {
               onConsult={()=>goToForm()}
               onCompare={()=>setScreen("compare")}
             />
+            <div style={{marginTop:"1.5rem"}}><SharedContactForm source="business-consultant" service={SERVICES[diagResult]?.title || "مشاوره کسب‌وکار"} dark /></div>
           </>
         )}
 
@@ -594,7 +601,7 @@ export default function App() {
             <p style={{fontSize:"0.85rem",color:C.soft,lineHeight:1.7,marginBottom:"1.5rem"}}>
               اطلاعات زیر را وارد کنید تا در اولین فرصت با شما تماس بگیریم.
             </p>
-            <ContactForm preService={selectedSvc ? SERVICES[selectedSvc]?.title : ""}/>
+            <SharedContactForm source="business-consultant" service={selectedSvc ? SERVICES[selectedSvc]?.title : "مشاوره کسب‌وکار"} dark />
             <button style={{width:"100%",background:C.surfaceHi,color:C.soft,border:`1.5px solid ${C.border}`,borderRadius:10,padding:"0.7rem",fontSize:"0.83rem",cursor:"pointer",fontFamily:FONT,marginTop:"0.75rem"}}
               onClick={()=>setScreen(diagResult?"result":"home")}>
               ← بازگشت

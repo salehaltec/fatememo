@@ -1,4 +1,6 @@
 import { useState } from "react";
+import PhoneVerification from "../components/PhoneVerification";
+import SharedContactForm from "../components/SharedContactForm";
 
 // ─── DESIGN TOKENS ────────────────────────────────────────────────────────────
 // Palette: deep slate base, amber as the single warm accent (warmth of "building"),
@@ -852,7 +854,7 @@ export default function App() {
         {screen === "form" && (
           <>
             <button style={{ ...S.btnGhost, marginBottom: "1.5rem" }} onClick={() => setScreen("home")}>← بازگشت</button>
-            <FormScreen onSubmit={(f) => { setSubmittedName(f.name); setScreen("formDone"); }} />
+            <SharedContactForm source="business-systemization" service="سیستم‌سازی کسب‌وکار" dark onSuccess={(f) => { setSubmittedName(f.name); setScreen("formDone"); }} />
           </>
         )}
 
@@ -869,8 +871,12 @@ export default function App() {
               این ۷ سوال دقیقاً همان چیزهایی را می‌سنجند که یک مشاور در اولین جلسه می‌پرسد.
               صادقانه جواب دهید — نتیجه فقط برای شماست.
             </p>
-            <DiagQuiz onFinish={(a) => { setDiagAnswers(a); setScreen("diagDone"); }} />
+            <DiagQuiz onFinish={(a) => { setDiagAnswers(a); setScreen("verify"); }} />
           </>
+        )}
+
+        {screen === "verify" && diagAnswers && (
+          <PhoneVerification dark accent="#f59e0b" assessment={{tool:"business-systemization",answers:diagAnswers,result:{total:diagAnswers.reduce((sum,x)=>sum+x,0)}}} onVerified={() => setScreen("diagDone")} />
         )}
 
         {/* ── DIAG DONE ── */}
@@ -880,6 +886,7 @@ export default function App() {
               answers={diagAnswers}
               onConsult={() => setScreen("formAfterDiag")}
             />
+            <div style={{marginTop:"1.5rem"}}><SharedContactForm source="business-systemization" service="سیستم‌سازی کسب‌وکار" dark /></div>
           </>
         )}
 
@@ -887,7 +894,7 @@ export default function App() {
         {screen === "formAfterDiag" && (
           <>
             <button style={{ ...S.btnGhost, marginBottom: "1.5rem" }} onClick={() => setScreen("diagDone")}>← بازگشت به نتیجه</button>
-            <FormScreen onSubmit={(f) => { setSubmittedName(f.name); setScreen("formDoneAfterDiag"); }} />
+            <SharedContactForm source="business-systemization" service="سیستم‌سازی کسب‌وکار" dark onSuccess={(f) => { setSubmittedName(f.name); setScreen("formDoneAfterDiag"); }} />
           </>
         )}
 
