@@ -498,9 +498,17 @@ export default function App() {
           آشنایی واقعی با همه ابزارهایی که<br/>کسب‌وکارتان با آن کار می‌کند
         </h2>
         <p style={{fontSize:"0.87rem",color:C.soft,lineHeight:1.85,marginBottom:"1.25rem"}}>
-          وقتی از وب‌سایت صحبت می‌کنیم، باید UX بداند. وقتی از AI حرف می‌زنیم، باید اجرا کرده باشد.
-          وقتی از تیم صحبت می‌کنیم، باید روانشناسی سازمانی بداند. روی هر حوزه هاور کنید:
+            وقتی از وب‌سایت صحبت می‌کنیم، باید UX بداند.
         </p>
+          <p style={{fontSize:"0.87rem",color:C.soft,lineHeight:1.85,marginBottom:"1.25rem"}}>
+              وقتی از AI حرف می‌زنیم، باید اجرا کرده باشد.
+          </p>
+          <p style={{fontSize:"0.87rem",color:C.soft,lineHeight:1.85,marginBottom:"1.25rem"}}>
+              وقتی از تیم صحبت می‌کنیم، باید روانشناسی سازمانی بداند.
+          </p>
+          <p>
+              روی هر حوزه کلیک کنید تا عملیات جزئی که روزانه با آنها سروکار دارید را ببینید:
+          </p>
         <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:16,padding:"1.5rem",marginBottom:"1rem"}}>
           <DomainRadar/>
         </div>
@@ -531,7 +539,7 @@ export default function App() {
               ۵ سوال — تشخیص دقیق
             </div>
             <p style={{fontSize:"0.85rem",color:C.soft,lineHeight:1.75,marginBottom:"1.25rem"}}>
-              بگویید کجای کسب‌وکارتان هستید، می‌گویم چه نوع همراهی‌ای واقعاً به دردتان می‌خورد.
+                بگویید کجای کسب‌و‌کارتان هستید تا مناسب‌ترین خدمت، به شما پیشنهاد شود.
             </p>
             <button style={{width:"100%",background:"linear-gradient(135deg,#f59e0b,#d97706)",color:"#09080f",border:"none",borderRadius:12,padding:"1rem 2rem",fontSize:"1rem",fontWeight:800,cursor:"pointer",fontFamily:FONT}}
               onClick={()=>setScreen("quiz")}>
@@ -583,7 +591,6 @@ export default function App() {
             <h3 style={{fontSize:"1.1rem",fontWeight:800,marginBottom:"0.5rem"}}>مطمئن نیستید چه نیازی دارید؟</h3>
             <p style={{fontSize:"0.83rem",color:C.soft,lineHeight:1.75,marginBottom:"1.25rem"}}>
               در یک جلسه آشنایی کوتاه، بدون تعهد، وضعیت را بررسی می‌کنیم.
-              اگر بتوانم کمک واقعی بکنم می‌گویم، اگر نه، آن را هم می‌گویم.
             </p>
             <button style={{width:"100%",background:"linear-gradient(135deg,#f59e0b,#d97706)",color:"#09080f",border:"none",borderRadius:12,padding:"1rem 2rem",fontSize:"1rem",fontWeight:800,cursor:"pointer",fontFamily:FONT}}
               onClick={()=>goToForm()}>
