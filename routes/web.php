@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AboutController;
-use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\ContactController;
@@ -29,17 +28,13 @@ Route::prefix('api')->middleware('throttle:60,1')->group(function () {
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/login', [AdminAuthController::class, 'create'])->name('login');
-    Route::post('/login/send', [AdminAuthController::class, 'send'])->name('login.send');
-    Route::post('/login/verify', [AdminAuthController::class, 'verify'])->name('login.verify');
-    Route::middleware('admin.phone')->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::get('/users/{phone}', [DashboardController::class, 'show'])->name('users.show');
-        Route::get('/export', [DashboardController::class, 'export'])->name('export');
-        Route::resource('/services', \App\Http\Controllers\Admin\ServiceController::class);
-        Route::resource('/messages', \App\Http\Controllers\Admin\MessageController::class)->only(['index', 'show', 'destroy']);
-        Route::post('/logout', [AdminAuthController::class, 'destroy'])->name('logout');
-    });
+    Route::redirect('/', '/admin/dashboard');
+    Route::redirect('/login', '/admin/dashboard')->name('login');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/users/{phone}', [DashboardController::class, 'show'])->name('users.show');
+    Route::get('/export', [DashboardController::class, 'export'])->name('export');
+    Route::resource('/services', \App\Http\Controllers\Admin\ServiceController::class);
+    Route::resource('/messages', \App\Http\Controllers\Admin\MessageController::class)->only(['index', 'show', 'destroy']);
 });
 
 require __DIR__.'/auth.php';

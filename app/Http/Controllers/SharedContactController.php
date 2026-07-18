@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewRequestNotification;
 use App\Models\ContactRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 
 class SharedContactController extends Controller
@@ -29,6 +31,23 @@ class SharedContactController extends Controller
             'source' => ['required', Rule::in(['business-check', 'business-systemization', 'business-consultant'])],
         ]);
         $contact = ContactRequest::create([...$data, 'phone' => $phone]);
+        $this->notifyAdmin($contact);
+
         return response()->json(['message' => 'درخواست شما با موفقیت ثبت شد.', 'id' => $contact->id], 201);
+    }
+
+    private function notifyAdmin(ContactRequest $contact): void
+    {
+        if (! config('services.admin.email')) {
+            logger()->warning('Admin email notification skipped: ADMIN_EMAIL is not configured.');
+
+            return;
+        }
+
+        try {
+            Mail::to(config('services.admin.email'))->send(NewRequestNotification::forContactRequest($contact));
+        } catch (\Throwable $exception) {
+            report($exception);
+        }
     }
 }
