@@ -442,7 +442,7 @@ function ContactForm({ preService }) {
 // ─── MAIN APP ─────────────────────────────────────────────────────────────────
 
 export default function App() {
-  const [screen, setScreen] = useState("home"); // home|quiz|result|compare|form
+  const [screen, setScreen] = useState("home"); // home|quiz|verify|result|compare|contactVerify|form
   const [diagResult, setDiagResult] = useState(null);
   const [diagTotals, setDiagTotals] = useState(null);
   const [selectedSvc, setSelectedSvc] = useState(null);
@@ -450,7 +450,7 @@ export default function App() {
 
   const goToForm = (svcId) => {
     setSelectedSvc(svcId || diagResult);
-    setScreen("form");
+    setScreen("contactVerify");
     setTimeout(()=>formRef.current?.scrollIntoView({behavior:"smooth"}),50);
   };
 
@@ -560,6 +560,16 @@ export default function App() {
 
         {screen === "verify" && diagResult && (
           <PhoneVerification dark accent="#f59e0b" assessment={{tool:"business-consultant",answers:diagTotals,result:{recommended:diagResult,totals:diagTotals}}} onVerified={()=>setScreen("result")} />
+        )}
+
+        {screen === "contactVerify" && (
+          <div ref={formRef}>
+            <PhoneVerification dark accent="#f59e0b" purpose="contact" onVerified={()=>setScreen("form")} />
+            <button style={{width:"100%",background:C.surfaceHi,color:C.soft,border:`1.5px solid ${C.border}`,borderRadius:10,padding:"0.7rem",fontSize:"0.83rem",cursor:"pointer",fontFamily:FONT,marginTop:"0.75rem"}}
+              onClick={()=>setScreen(diagResult?"result":"home")}>
+              بازگشت →
+            </button>
+          </div>
         )}
 
         {screen === "result" && diagResult && (

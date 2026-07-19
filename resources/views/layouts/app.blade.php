@@ -18,7 +18,7 @@
 
     <style>
         body {
-            font-family: sans-serif;
+            font-family: Vazirmatn, sans-serif;
             margin: 0;
             background: #f7f7f7;
             direction: rtl;

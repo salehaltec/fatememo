@@ -1,6 +1,6 @@
 {
-  "_SharedContactForm-C2jBZxTo.js": {
-    "file": "assets/SharedContactForm-C2jBZxTo.js",
+  "_SharedContactForm-BziZhAaZ.js": {
+    "file": "assets/SharedContactForm-BziZhAaZ.js",
     "name": "SharedContactForm",
     "imports": [
       "_client-Bh-W1TDz.js"
@@ -11,7 +11,7 @@
     "name": "client"
   },
   "resources/css/app.css": {
-    "file": "assets/app-pTrGXpyK.css",
+    "file": "assets/app-BmoHZeaj.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -25,42 +25,54 @@
     ]
   },
   "resources/js/pages/business-check-entry.jsx": {
-    "file": "assets/business-check-entry-iy2kWsC0.js",
+    "file": "assets/business-check-entry-VC8GJmVY.js",
     "name": "business-check-entry",
     "src": "resources/js/pages/business-check-entry.jsx",
     "isEntry": true,
     "imports": [
       "_client-Bh-W1TDz.js",
-      "_SharedContactForm-C2jBZxTo.js"
+      "_SharedContactForm-BziZhAaZ.js"
+    ],
+    "css": [
+      "assets/app-BmoHZeaj.css"
     ]
   },
   "resources/js/pages/business-consultant-entry.jsx": {
-    "file": "assets/business-consultant-entry--6XADQGC.js",
+    "file": "assets/business-consultant-entry-C8shtu9v.js",
     "name": "business-consultant-entry",
     "src": "resources/js/pages/business-consultant-entry.jsx",
     "isEntry": true,
     "imports": [
       "_client-Bh-W1TDz.js",
-      "_SharedContactForm-C2jBZxTo.js"
+      "_SharedContactForm-BziZhAaZ.js"
+    ],
+    "css": [
+      "assets/app-BmoHZeaj.css"
     ]
   },
   "resources/js/pages/business-systemization-entry.jsx": {
-    "file": "assets/business-systemization-entry-Da0NKFDN.js",
+    "file": "assets/business-systemization-entry-CVNecE3Y.js",
     "name": "business-systemization-entry",
     "src": "resources/js/pages/business-systemization-entry.jsx",
     "isEntry": true,
     "imports": [
       "_client-Bh-W1TDz.js",
-      "_SharedContactForm-C2jBZxTo.js"
+      "_SharedContactForm-BziZhAaZ.js"
+    ],
+    "css": [
+      "assets/app-BmoHZeaj.css"
     ]
   },
   "resources/js/pages/home-entry.jsx": {
-    "file": "assets/home-entry-DPjuWIEv.js",
+    "file": "assets/home-entry-Ck8qVEpm.js",
     "name": "home-entry",
     "src": "resources/js/pages/home-entry.jsx",
     "isEntry": true,
     "imports": [
       "_client-Bh-W1TDz.js"
+    ],
+    "css": [
+      "assets/app-BmoHZeaj.css"
     ]
   }
 }
