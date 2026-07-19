@@ -29,9 +29,9 @@ Route::prefix('api')->middleware('throttle:60,1')->group(function () {
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
+    Route::redirect('/', '/admin/dashboard');
     Route::get('/login', [AdminAuthController::class, 'create'])->name('login');
-    Route::post('/login/send', [AdminAuthController::class, 'send'])->name('login.send');
-    Route::post('/login/verify', [AdminAuthController::class, 'verify'])->name('login.verify');
+    Route::post('/login', [AdminAuthController::class, 'authenticate'])->name('login.authenticate');
     Route::middleware('admin.phone')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/users/{phone}', [DashboardController::class, 'show'])->name('users.show');

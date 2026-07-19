@@ -41,6 +41,9 @@ return [
         'body_id' => env('MELIPAYAMAK_BODY_ID'),
     ],
 
-    'admin' => ['phone' => env('ADMIN_PHONE')],
+    'admin' => [
+        'phone' => env('ADMIN_PHONE'),
+        'email' => env('ADMIN_EMAIL'),
+    ],
 
 ];
