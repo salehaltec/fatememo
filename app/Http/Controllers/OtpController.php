@@ -20,10 +20,10 @@ class OtpController extends Controller
             throw ValidationException::withMessages(['phone' => 'تعداد درخواست‌ها زیاد است. چند دقیقه دیگر تلاش کنید.']);
         }
 
-        RateLimiter::hit($key, 300);
         $code = (string) random_int(100000, 999999);
-        Cache::put('otp:'.$phone, hash('sha256', $code), now()->addMinutes(3));
         $sms->sendOtp($phone, $code);
+        Cache::put('otp:'.$phone, hash('sha256', $code), now()->addMinutes(3));
+        RateLimiter::hit($key, 300);
 
         return response()->json(['message' => 'کد تأیید ارسال شد.', 'expires_in' => 180]);
     }
