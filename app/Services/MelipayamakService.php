@@ -11,6 +11,8 @@ class MelipayamakService
     {
         $username = trim((string) config('services.melipayamak.username'));
         $password = trim((string) config('services.melipayamak.password'));
+        $apiKey = trim((string) config('services.melipayamak.api_key'));
+        $credential = $apiKey !== '' ? $apiKey : $password;
         $bodyId = trim((string) config('services.melipayamak.body_id'));
 
         if (app()->environment(['local', 'testing']) && ! $username) {
@@ -18,10 +20,10 @@ class MelipayamakService
             return;
         }
 
-        if ($username === '' || $password === '' || $bodyId === '') {
+        if ($username === '' || $credential === '' || $bodyId === '') {
             logger()->error('Melipayamak configuration is incomplete.', [
                 'has_username' => $username !== '',
-                'has_password' => $password !== '',
+                'has_credential' => $credential !== '',
                 'has_body_id' => $bodyId !== '',
             ]);
 
@@ -33,7 +35,7 @@ class MelipayamakService
                 'https://rest.payamak-panel.com/api/SendSMS/BaseServiceNumber',
                 [
                     'username' => $username,
-                    'password' => $password,
+                    'password' => $credential,
                     'text' => $code,
                     'to' => $phone,
                     'bodyId' => (int) $bodyId,
@@ -73,12 +75,12 @@ class MelipayamakService
     private function errorMessage(int $code): string
     {
         return match ($code) {
-            -110 => 'حساب ملی‌پیامک شما استفاده از API Key را اجباری کرده است؛ این محدودیت باید از پنل یا پشتیبانی ملی‌پیامک غیرفعال شود.',
+            -110 => 'کلید API ملی‌پیامک تنظیم نشده یا معتبر نیست.',
             -109 => 'IP سرور در پنل ملی‌پیامک مجاز نشده است.',
             -108 => 'IP سرور به‌دلیل تلاش ناموفق موقتاً مسدود شده است.',
             -5 => 'متغیرهای الگوی پیامک با متن ارسال‌شده مطابقت ندارند.',
             -4 => 'کد الگوی پیامک صحیح یا تأییدشده نیست.',
-            0 => 'نام کاربری یا رمز وب‌سرویس ملی‌پیامک صحیح نیست.',
+            0 => 'نام کاربری یا اطلاعات دسترسی ملی‌پیامک صحیح نیست.',
             2 => 'اعتبار پنل پیامکی کافی نیست.',
             default => 'ارسال پیامک ناموفق بود. لطفاً دوباره تلاش کنید.',
         };
