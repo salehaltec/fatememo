@@ -38,7 +38,6 @@ return [
     'melipayamak' => [
         'username' => env('MELIPAYAMAK_USERNAME'),
         'password' => env('MELIPAYAMAK_PASSWORD'),
-        'api_key' => env('MELIPAYAMAK_API_KEY'),
         'body_id' => env('MELIPAYAMAK_BODY_ID'),
     ],
 
